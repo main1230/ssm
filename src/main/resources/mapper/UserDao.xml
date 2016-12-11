@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzl.ssm.dao.UserDao">
+    <insert id="register">
+        INSERT ignore INTO user (name, phone, password)
+        VALUES (#{name}, #{phone}, #{password})
+    </insert>
+
+    <select id="getUserById" resultType="com.zzl.ssm.entity.User">
+        SELECT id, name, phone, password, head_image, add_time
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <select id="login" resultType="com.zzl.ssm.entity.User">
+        SELECT id, name, phone, password, head_image
+        FROM user
+        WHERE phone = #{phone} AND password = #{password}
+    </select>
+
+    <delete id="deleteUserById">
+        DELETE FROM user
+        WHERE id = #{id}
+    </delete>
+
+    <select id="queryUsers" resultType="com.zzl.ssm.entity.User">
+        SELECT id, name, phone, password, head_image, add_time
+        FROM user
+        ORDER BY add_time DESC
+        limit #{offset}, #{limit}
+    </select>
+
+    <update id="updateUser">
+        UPDATE user
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="phone != null">name = #{phone},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="lastTime != null">last_time = #{lastTime},</if>
+            <if test="headImage != null">headd_image = #{headImage}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>
