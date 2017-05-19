@@ -2,45 +2,58 @@ package com.zzl.ssm.entity;
 
 import java.util.Date;
 
-/**
- * Created by zzl on 2016/12/4.
- */
 public class User {
-    private int id;
-    private String name;
-    private String phone;
+    private Integer id;
+
+    private String username;
+
     private String password;
-    private String headImage;
-    private Date  addTime;
-    private Date lastTime;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
-                ", headImage='" + headImage + '\'' +
-                ", addTime=" + addTime +
-                ", lastTime=" + lastTime +
-                '}';
+    private String email;
+
+    private String phone;
+
+    private String question;
+
+    private String answer;
+
+    private Integer role;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.question = question;
+        this.answer = answer;
+        this.role = role;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 
-    public Date getLastTime() {
-        return lastTime;
+    public User() {
+        super();
     }
 
-    public void setLastTime(Date lastTime) {
-        this.lastTime = lastTime;
+    public Integer getId() {
+        return id;
     }
 
-    public Date getAddTime() {
-        return addTime;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -48,23 +61,15 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getPhone() {
@@ -72,14 +77,46 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getHeadImage() {
-        return headImage;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setHeadImage(String headImage) {
-        this.headImage = headImage;
+    public void setQuestion(String question) {
+        this.question = question == null ? null : question.trim();
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer == null ? null : answer.trim();
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
