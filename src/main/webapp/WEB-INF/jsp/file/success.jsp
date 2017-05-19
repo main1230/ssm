@@ -12,7 +12,7 @@
 </head>
 <body>
 <div align="center">
-    <h1>上传成功</h1>
+    <h1>上传成功，地址：${url}</h1>
 </div>
 </body>
 </html>

@@ -1,16 +1,20 @@
 package com.zzl.ssm.web.file;
 
+import com.zzl.ssm.util.PropertiesUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * Created by zhangzl
@@ -46,9 +50,14 @@ public class FileController {
      * @return
      */
     @RequestMapping(value = "/doUpload", method = RequestMethod.POST)
-    public String doUploadFile(@RequestParam("file") MultipartFile file) {
+    public String doUploadFile(HttpServletRequest request, @RequestParam("file") MultipartFile file, Model model) {
         try {
-            dealFile(file);
+            String path = dealFile(file);
+            path = request.getScheme() + "://"
+                    + request.getServerName() + ":"
+                    + request.getServerPort()
+                    + "/download/" + path;
+            model.addAttribute("url", path);
         } catch (IOException e) {
             e.printStackTrace();
             logger.debug("---doUploadFile---", e.getMessage());
@@ -80,9 +89,29 @@ public class FileController {
      * @param file
      * @throws IOException
      */
-    private void dealFile(MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {
-            FileUtils.copyInputStreamToFile(file.getInputStream(), new File("G:\\install\\Tomcat\\download\\", file.getOriginalFilename()));
+    private String dealFile(MultipartFile file) throws IOException {
+        String path;
+        if (System.getProperty("os.name").toLowerCase().contains("window")) {
+            path = PropertiesUtil.getProperty("filepath.win");
+        } else {
+            path = PropertiesUtil.getProperty("filepath.linux");
         }
+
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+
+        path += year + File.separator + month;
+        File dir = new File(path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        if (!file.isEmpty()) {
+            FileUtils.copyInputStreamToFile(file.getInputStream(),
+                    new File(path, file.getOriginalFilename()));
+            return year + "/"  + month + "/" + file.getOriginalFilename();
+        }
+        return "";
     }
 }
