@@ -15,7 +15,26 @@
         （2）提供一系列的功能：数据绑定，数字和日期的format
             xml和json默认读写支持
     -->
-    <mvc:annotation-driven />
+    <!--<mvc:annotation-driven />-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!--servlet-mapping映射路径：“/”-->
     <!--2 静态资源默认servlet配置
@@ -34,7 +53,8 @@
     <!--文件上传  resolverLazily推迟文件解析 以便捕获文件大小异常-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"></property>
-        <property name="maxUploadSize" value="8388608"></property>
+        <property name="maxUploadSize" value="10485760"></property><!-- 10m -->
+        <property name="maxInMemorySize" value="4096" />
         <property name="resolveLazily" value="true"></property>
     </bean>
     <!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
