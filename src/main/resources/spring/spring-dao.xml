@@ -60,4 +60,9 @@
         <!--给出需要扫描dao接口包-->
         <property name="basePackage" value="com.zzl.ssm.dao"/>
     </bean>
+
+    <bean id="userRedisDao" class="com.zzl.ssm.dao.cache.UserRedisDao">
+        <constructor-arg index="0" value="${redis.ip}"></constructor-arg>
+        <constructor-arg index="1" value="${redis.port}"></constructor-arg>
+    </bean>
 </beans>
