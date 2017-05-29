@@ -201,4 +201,12 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.successData(user);
     }
+
+    @Override
+    public ServerResponse checkUserAdminRole(User user) {
+        if (user != null && user.getRole() == Constent.Role.ROLE_ADMIN) {
+            return ServerResponse.success();
+        }
+        return ServerResponse.error();
+    }
 }

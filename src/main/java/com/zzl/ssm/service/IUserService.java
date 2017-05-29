@@ -29,4 +29,11 @@ public interface IUserService {
     ServerResponse<User> updateUserInfo(User user);
 
     ServerResponse<User> getUserInfo(Integer userId);
+
+    /**
+     * 是否是管理员
+     * @param user
+     * @return
+     */
+    ServerResponse checkUserAdminRole(User user);
 }

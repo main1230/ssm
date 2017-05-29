@@ -64,13 +64,13 @@ public class UserController {
         return ServerResponse.errorMsg("用户未登陆");
     }
 
-    @RequestMapping(value = "forget_get_question", method = RequestMethod.GET)
+    @RequestMapping(value = "forget_get_question", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetGetQuestion(String username) {
         return iUserService.selectQuestion(username);
     }
 
-    @RequestMapping(value = "forget_check_answer", method = RequestMethod.GET)
+    @RequestMapping(value = "forget_check_answer", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer) {
         return iUserService.forgetCheckAnswer(username, question, answer);
