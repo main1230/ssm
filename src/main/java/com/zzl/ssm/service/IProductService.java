@@ -1,5 +1,6 @@
 package com.zzl.ssm.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zzl.ssm.common.ServerResponse;
 import com.zzl.ssm.entity.Product;
 import com.zzl.ssm.vo.ProductDetailVO;
@@ -19,4 +20,5 @@ public interface IProductService {
 
     ServerResponse getProductList(int pageNum, int PageSize);
 
+    ServerResponse<PageInfo> productSearch(String productName, Integer productId, int pageNum, int pageSize);
 }

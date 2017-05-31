@@ -84,4 +84,20 @@ public class ProductAdminController {
             return ServerResponse.errorMsg("无权操作");
         }
     }
+
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse productSearch(HttpSession session, String productName, Integer productId,
+                                        @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        User user = (User) session.getAttribute(Constent.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.error(ServerResponseCode.NEED_LOGIN.getCode(), "用户未登陆");
+        }
+        if (iUserService.checkUserAdminRole(user).isSuccess()) {
+            return iProductService.productSearch(productName, productId, pageNum, pageSize);
+        } else {
+            return ServerResponse.errorMsg("无权操作");
+        }
+    }
 }
