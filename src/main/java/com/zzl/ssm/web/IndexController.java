@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 日期：  2017/5/22.
  */
 @Controller
-@RequestMapping(value = "test/")
+@RequestMapping(value = "rn/")
 public class IndexController {
 
-    @RequestMapping(value = "a/", method = RequestMethod.GET)
+    @RequestMapping(value = "a", method = RequestMethod.GET)
     public String index() {
         return "test";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
     }
 }
