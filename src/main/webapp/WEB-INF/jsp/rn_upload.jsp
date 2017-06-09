@@ -10,38 +10,49 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>登录</title>
+    <title>rn热更新文件上传</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="${basePath}/resources/layui/css/layui.css"  media="all">
     <script type="text/javascript" src="${basePath}/resources/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${basePath}/resources/md5.min.js"></script>
-    <%--<style>--%>
-        <%--body,div {--%>
-            <%--margin: 0 auto;--%>
-            <%--text-align: center;--%>
-        <%--}--%>
-    <%--</style>--%>
+    <style>
+        body,div {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<div class="layui-form" >
+    <div class="layui-form-item">
+        <label class="layui-form-label">versionName:</label>
+        <div class="layui-input-block">
+            <input id="app_vname" type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入versionName" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">versionCode:</label>
+        <div class="layui-input-block">
+            <input id="app_vcode" type="number" name="username" lay-verify="title" autocomplete="off" placeholder="请输入versionCode" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">jsbundleName:</label>
+        <div class="layui-input-block">
+            <input id="jsbundle_name" type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入jsbundleName" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">灰度测试总数:</label>
+        <div class="layui-input-block">
+            <input id="test_num" type="number" name="username" lay-verify="title" autocomplete="off" placeholder="灰度测试总数" class="layui-input">
+        </div>
+    </div>
 
-<div class="layui-form">
-    <div class="layui-form-item">
-        <label class="layui-form-label">用户名:</label>
-        <div class="layui-input-block">
-            <input id="username" type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">密码:</label>
-        <div class="layui-input-inline">
-            <input id="password" type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
-        </div>
-    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button id="submit" class="layui-btn" lay-submit="" lay-filter="login">登录</button>
+            <button id="submit" class="layui-btn" lay-submit="" lay-filter="login">提交</button>
         </div>
     </div>
 </div>
