@@ -63,7 +63,7 @@
                 alert(s);
                 alert(result.status)
                 if (result.status == 0) {
-                    location.href = "${basePath}/file/fileUpload";
+                    location.href = "${basePath}/rn/page/add";
                 } else {
                     layer.open({
                         title: '错误提示',
@@ -73,10 +73,9 @@
             },
             error: function () {
                 layer.open({
-                    title: '',
+                    title: '错误提示',
                     content: '${basePath}草，出错了~'
                 });
-                location.href = "${basePath}/file/fileUpload";
             }
         });
     });

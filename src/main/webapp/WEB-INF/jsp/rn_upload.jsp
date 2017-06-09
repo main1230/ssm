@@ -44,6 +44,13 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">jsbundle_url:</label>
+        <div class="layui-input-block">
+            <input id="jsbundle_url" type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入jsbundleName" class="layui-input">
+            <input type="file" name="file" class="layui-upload-file">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">灰度测试总数:</label>
         <div class="layui-input-block">
             <input id="test_num" type="number" name="username" lay-verify="title" autocomplete="off" placeholder="灰度测试总数" class="layui-input">
@@ -62,11 +69,15 @@
 
     layer = layui.layer;
     $('#submit').click(function () {
+        alert($('#app_vname').val())
         $.ajax({
-            url: "${basePath}/user/login",
+            url: "${basePath}/rn/add",
             data: {
-                username: $('#username').val(),
-                password: $('#password').val()
+                appVname: $('#app_vname').val(),
+                appVcode: $('#app_vcode').val(),
+                jsbundleName: $('#jsbundle_name').val(),
+                jsbundleUrl: $('#jsbundle_url').val(),
+                testNum: $('#test_num').val(),
             },
             type: 'post',
             success: function (result) {
