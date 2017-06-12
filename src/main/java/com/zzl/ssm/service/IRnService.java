@@ -10,5 +10,5 @@ import com.zzl.ssm.common.ServerResponse;
 public interface IRnService {
 
     ServerResponse add_rn(String username, Integer user_id, String appVname, Integer appVcode,
-                                 String jsbundleName, String jsbundleUrl, Integer testNum);
+                                 String jsbundleName, String jsbundleUrl, Integer testNum, String describe);
 }

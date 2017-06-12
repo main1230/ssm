@@ -22,7 +22,7 @@ public class RnServiceImpl implements IRnService {
 
     @Override
     public ServerResponse add_rn(String username, Integer user_id, String appVname, Integer appVcode,
-                                 String jsbundleName, String jsbundleUrl, Integer testNum) {
+                                 String jsbundleName, String jsbundleUrl, Integer testNum, String describe) {
         RnUpload rnUpload = new RnUpload();
         rnUpload.setUsername(username);
         rnUpload.setUserid(user_id);
@@ -33,6 +33,7 @@ public class RnServiceImpl implements IRnService {
         rnUpload.setTestNum(testNum);
         rnUpload.setCreateTime(new Date());
         rnUpload.setStatus(0);
+        rnUpload.setDescribe(describe);
 
         int rowCount = rnUploadMapper.insert(rnUpload);
         if (rowCount > 0) {

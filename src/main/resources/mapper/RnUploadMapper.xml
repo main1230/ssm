@@ -109,11 +109,11 @@
     insert into mmall_rn_upload (id, app_vname, app_vcode, 
       jsbundle_name, jsbundle_url, test_num, 
       status, username, userid, 
-      create_time)
+      create_time, describe)
     values (#{id,jdbcType=INTEGER}, #{appVname,jdbcType=VARCHAR}, #{appVcode,jdbcType=INTEGER}, 
       #{jsbundleName,jdbcType=VARCHAR}, #{jsbundleUrl,jdbcType=VARCHAR}, #{testNum,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{createTime,jdbcType=TIMESTAMP}, #{describe, jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzl.ssm.entity.RnUpload">
     insert into mmall_rn_upload

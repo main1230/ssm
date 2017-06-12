@@ -39,6 +39,9 @@ public class RnUpload {
 
     private Date createTime;
 
+    private String describe;
+
+
     public RnUpload() {
     }
 
@@ -53,6 +56,14 @@ public class RnUpload {
         this.username = username;
         this.userid = userid;
         this.createTime = createTime;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public Integer getId() {

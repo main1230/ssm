@@ -1,5 +1,6 @@
 package com.zzl.ssm.web.file;
 
+import com.zzl.ssm.common.ServerResponse;
 import com.zzl.ssm.util.PropertiesUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +65,23 @@ public class FileController {
             logger.debug("---doUploadFile---", e.getMessage());
         }
         return "file/success";
+    }
+
+    @RequestMapping(value = "api/doUpload", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse doUploadFileApi(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        try {
+            String path = dealFile(file);
+            path = request.getScheme() + "://"
+                    + request.getServerName() + ":"
+                    + request.getServerPort()
+                    + "/download/" + path;
+            return ServerResponse.successMsg(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.debug("---doUploadFile---", e.getMessage());
+            return ServerResponse.error();
+        }
     }
 
     /**

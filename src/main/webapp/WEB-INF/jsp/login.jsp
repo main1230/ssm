@@ -59,9 +59,6 @@
             },
             type: 'post',
             success: function (result) {
-                var s = JSON.stringify(result);
-                alert(s);
-                alert(result.status)
                 if (result.status == 0) {
                     location.href = "${basePath}/rn/page/add";
                 } else {

@@ -41,12 +41,12 @@ public class RnController {
     @ResponseBody
     public ServerResponse rn_add(HttpSession session, @Param("appVname") String appVname, @Param("appVcode")Integer appVcode,
                                  @Param("jsbundleName")String jsbundleName,  @Param("jsbundleUrl")String jsbundleUrl,
-                                 @Param("testNum")Integer testNum) {
+                                 @Param("testNum")Integer testNum, @Param("describe") String describe) {
         User user = (User) session.getAttribute(Constent.CURRENT_USER);
         if (user == null) {
             return ServerResponse.error(ServerResponseCode.NEED_LOGIN.getCode(), "需要登录");
         }
-        ServerResponse response = iRnService.add_rn(user.getUsername(), user.getId(), appVname, appVcode, jsbundleName, jsbundleUrl, testNum);
+        ServerResponse response = iRnService.add_rn(user.getUsername(), user.getId(), appVname, appVcode, jsbundleName, jsbundleUrl, testNum, describe);
         if (response.isSuccess()) {
             return ServerResponse.successMsg("上传成功");
         }
